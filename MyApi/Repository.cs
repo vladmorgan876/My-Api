@@ -35,13 +35,21 @@ namespace MyApi
    
     public void AddNewDriverInOneCompany(int CompanyId, int CarId, Driver driver)
     {
-      var comp = _context.Companies.FirstOrDefault(c => c.Id == CompanyId);
-      var car2 = _context.Cars.FirstOrDefault(c => c.Id == CarId);
-      driver.Cars.Add(car2);
+
+      var res = _context.Cars.Include(z => z.Company).FirstOrDefault(x=>x.Id==CarId);
+      driver.Cars.Add(res);
       _context.Add(driver);
       _context.SaveChanges();
+
+
+
+      //var comp = _context.Companies.FirstOrDefault(c => c.Id == CompanyId);
+      //var car2 = _context.Cars.FirstOrDefault(c => c.Id == CarId);
+      //driver.Cars.Add(car2);
+      //_context.Add(driver);
+      //_context.SaveChanges();
     }
-   
+
     public void DeleteCompany(int id)
     {
       var res = _context.Companies.FirstOrDefault(c => c.Id == id);
@@ -52,13 +60,17 @@ namespace MyApi
 
     public void DeleteOneCarFromCompany(int CompanyId, int CarId)
     {
-      var comp = _context.Companies.FirstOrDefault(x => x.Id == CompanyId);
-      var car1 = _context.Cars.FirstOrDefault(c => c.Id == CarId);
-      if (car1.CompanyId == comp.Id)
-      {
-        _context.Cars.Remove(car1);
+      var res = _context.Cars.Include(z => z.Company).FirstOrDefault(x=>x.Id==CarId);
+        _context.Cars.Remove(res);
         _context.SaveChanges();
-      }
+
+      //var comp = _context.Companies.FirstOrDefault(x => x.Id == CompanyId);
+      //var car1 = _context.Cars.FirstOrDefault(c => c.Id == CarId);
+      //if (car1.CompanyId == comp.Id)
+      //{
+      //  _context.Cars.Remove(car1);
+      //  _context.SaveChanges();
+      //}
     }
     //=========================================
     public void DeleteOneDriverFromCompany(int CompanyId, int CarId, int DriverId)
@@ -85,14 +97,19 @@ namespace MyApi
     //===============================================================================
     public void UpdateOneCarInOneCompany(int CompanyId, Car car, int CarId)
     {
-      var comp = _context.Companies.FirstOrDefault(z => z.Id == CompanyId);
-      var car1 = _context.Cars.FirstOrDefault(z => z.Id == CarId);
-      if (car1.CompanyId == comp.Id)
-      {
-        car1.Model = car.Model;
-        _context.Cars.Update(car1);
+      var res = _context.Cars.Include(z => z.Company).FirstOrDefault(x=>x.Id==CarId);
+        res.Model = car.Model;
+        _context.Cars.Update(res);
         _context.SaveChanges();
-      }
+
+      //var comp = _context.Companies.FirstOrDefault(z => z.Id == CompanyId);
+      //var car1 = _context.Cars.FirstOrDefault(z => z.Id == CarId);
+      //if (car1.CompanyId == comp.Id)
+      //{
+      //  car1.Model = car.Model;
+      //  _context.Cars.Update(car1);
+      //  _context.SaveChanges();
+      //}
     }
     //==============================================================================
     public void UpdateOneDriverInOneCompany(int CompanyId, Driver driver, int DriverId)
