@@ -4,10 +4,17 @@ using MyApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MyApi
 {
+  public class Mod
+  {
+    public string Car { get; set; }
+    public string Company { get; set; }
+    public string Driver { get; set; }
+  }
   public class Repository : IRepository
   {
     public ApplicationContext _context;
@@ -32,14 +39,26 @@ namespace MyApi
         _context.SaveChanges();
       }
     }
-   
-    public void AddNewDriverInOneCompany(int CompanyId, int CarId, Driver driver)
+    //??????????????????????????????????????????
+    public string AddNewDriverInOneCompany(int CompanyId, int CarId, Driver driver)
+      // public void AddNewDriverInOneCompany(int CompanyId, int CarId, Driver driver)
     {
-
-      var res = _context.Cars.Include(z => z.Company).FirstOrDefault(x=>x.Id==CarId);
-      driver.Cars.Add(res);
-      _context.Add(driver);
-      _context.SaveChanges();
+      var res = _context.Cars.Include(z => z.Company).FirstOrDefault(x=>x.Id==CarId);    
+      if (res.CompanyId == CompanyId)
+      {
+        driver.Cars.Add(res);
+        _context.Add(driver);
+        _context.SaveChanges();
+        string[] text = { res.Model, " ", "ID:", res.Id.ToString()," водитель:",driver.Name," успешно был добавлен в компанию:",res.Company.Name };
+        string mess = string.Concat(text);
+        return mess;
+      }
+      else
+      {        
+        string[] text = { res.Model," ","ID:",res.Id.ToString()," ", "эта машина не пренадлежит этой компании,водитель не был добавлен" };
+        string mess = string.Concat(text);
+        return mess;
+      }
 
 
 
@@ -82,19 +101,67 @@ namespace MyApi
 
       _context.SaveChanges();
     }
-    //========================================================
-    public Company GetAboutOneCompany(int CompanyId)
+    //==========================================
+    public List<Mod> GetAboutOneCompany(int CompanyId)
     {
-      var res = _context.Companies.FirstOrDefault(x => x.Id == CompanyId);
-      return res;
+      List<Mod> result = new List<Mod>();
+      var res = _context.Companies.Include(x => x.Cars).ThenInclude(z=>z.Drivers).FirstOrDefault(x => x.Id == CompanyId);
+      foreach (var car in res.Cars)
+      {
+        foreach(var driver in car.Drivers)
+        {
+          Mod mod = new Mod();
+          mod.Company = res.Name;
+          mod.Car = car.Model;
+          mod.Driver = driver.Name;
+          result.Add(mod);
+        }        
+      }
+      return result;
     }
-
-    public List<Car> GetAllAboutCompanies()
+//==============================================
+    public List<Mod> GetAllAboutCompanies(string companyName)
+   //      если поменять блоки условия местами РАБОТАЕТ ТОЛЬКО ПРИ УСЛОВИИ НАЛИЧИЯ companyName ???????????
     {
-      var res = _context.Cars.Include(x => x.Company).ToList();
-      return res;
+      if(string.IsNullOrEmpty(companyName))
+      {
+        List<Mod> result2 = new List<Mod>();
+        var res = _context.Companies.Include(x => x.Cars).ThenInclude(z => z.Drivers).ToList();
+        foreach (var com in res)
+        {
+          foreach (var car in com.Cars)
+          {
+            foreach (var driver in car.Drivers)
+            {
+              Mod mod = new Mod();
+              mod.Company = com.Name;
+              mod.Car = car.Model;
+              mod.Driver = driver.Name;
+              result2.Add(mod);
+            }          
+          }         
+        }
+        return result2;
+      }
+       else
+        {
+        List<Mod> result = new List<Mod>();
+        var res = _context.Companies.Include(x => x.Cars).ThenInclude(z => z.Drivers).FirstOrDefault(x => x.Name == companyName);
+        foreach (var car in res.Cars)
+        {
+          foreach (var driver in car.Drivers)
+          {
+            Mod mod = new Mod();
+            mod.Company = res.Name;
+            mod.Car = car.Model;
+            mod.Driver = driver.Name;
+            result.Add(mod);
+          }
+        }
+        return result;
+      }
     }
-    //===============================================================================
+    //============================================
     public void UpdateOneCarInOneCompany(int CompanyId, Car car, int CarId)
     {
       var res = _context.Cars.Include(z => z.Company).FirstOrDefault(x=>x.Id==CarId);
@@ -111,7 +178,7 @@ namespace MyApi
       //  _context.SaveChanges();
       //}
     }
-    //==============================================================================
+    //============================================
     public void UpdateOneDriverInOneCompany(int CompanyId, Driver driver, int DriverId)
     {
       var res = _context.Drivers.Include(x => x.Cars).ThenInclude(z => z.Company).FirstOrDefault(z=>z.Id== DriverId);

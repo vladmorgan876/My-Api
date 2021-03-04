@@ -64,3 +64,5 @@ C:\Users\user\source\repos\MyApi\MyApi\obj\Debug\netcoreapp3.1\MyApi.csproj.Copy
 C:\Users\user\source\repos\MyApi\MyApi\obj\Debug\netcoreapp3.1\MyApi.dll
 C:\Users\user\source\repos\MyApi\MyApi\obj\Debug\netcoreapp3.1\MyApi.pdb
 C:\Users\user\source\repos\MyApi\MyApi\obj\Debug\netcoreapp3.1\MyApi.genruntimeconfig.cache
+C:\Users\user\source\repos\MyApi\MyApi\bin\Debug\netcoreapp3.1\Anemonis.AspNetCore.JsonRpc.dll
+C:\Users\user\source\repos\MyApi\MyApi\bin\Debug\netcoreapp3.1\Anemonis.JsonRpc.dll

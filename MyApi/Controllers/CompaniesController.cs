@@ -18,18 +18,19 @@ namespace MyApi.Controllers
 
     public CompaniesController(IRepository Repository)
     {
-      MyRepository = (Repository)Repository;
+      MyRepository =Repository;
     }
     //    1   ----------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //GET: api/<CompaniesController>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Car>>> Get()
+    // public async Task<ActionResult<IEnumerable<Car>>> Get(string search)
+    public async Task<ActionResult<List<Mod>>> Get(string search=null)
     {
-      return MyRepository.GetAllAboutCompanies();
+      return MyRepository.GetAllAboutCompanies(search);
     }
 //     2       !!!!!!!!!!!!!!!!!!!!!!!!!!!!
     [HttpGet("{id}")]
-    public Company GetOneCompany(int id)
+    public List<Mod> GetOneCompany(int id)
     {
       return MyRepository.GetAboutOneCompany(id);
     }
@@ -51,11 +52,13 @@ namespace MyApi.Controllers
     {
       MyRepository.AddNewCarInCompany(CompanyId, car);
     }
-    //=    6  ========  !!!!!!!!!!!!!!!!    ====================================
+    //=    6  ========  !!!!!!!!!!!!!!!!  ????????????????  ====================================
     [HttpPost("{CompanyId}/{CarId}/drivers")]
-    public void AddNewDriverCompany(int CompanyId, int CarId, Driver driver)
+    public string AddNewDriverCompany(int CompanyId, int CarId, Driver driver)
+     // public void AddNewDriverCompany(int CompanyId, int CarId, Driver driver)
     {
-      MyRepository.AddNewDriverInOneCompany(CompanyId, CarId, driver);
+     return MyRepository.AddNewDriverInOneCompany(CompanyId, CarId, driver);
+      // MyRepository.AddNewDriverInOneCompany(CompanyId, CarId, driver);
     }
     //=================================================
     //   7    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

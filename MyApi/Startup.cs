@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,18 @@ namespace MyApi
       services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
       services.AddTransient<IRepository, Repository>();
+      services.AddJsonRpc();
+      // If using Kestrel:
+      services.Configure<KestrelServerOptions>(options =>
+      {
+        options.AllowSynchronousIO = true;
+      });
 
+      // If using IIS:
+      services.Configure<IISServerOptions>(options =>
+      {
+        options.AllowSynchronousIO = true;
+      });
     }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,11 +59,11 @@ namespace MyApi
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+      app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+      app.UseJsonRpc();
         }
     }
 }

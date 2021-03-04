@@ -2,6 +2,35 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Anemonis.AspNetCore.JsonRpc/1.19.0": {
+        "type": "package",
+        "dependencies": {
+          "Anemonis.JsonRpc": "1.24.2",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.3",
+          "Microsoft.Extensions.Options": "3.1.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Anemonis.AspNetCore.JsonRpc.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Anemonis.AspNetCore.JsonRpc.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Anemonis.JsonRpc/1.24.2": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.1/Anemonis.JsonRpc.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Anemonis.JsonRpc.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -460,7 +489,7 @@
           }
         }
       },
-      "Newtonsoft.Json/12.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
@@ -502,7 +531,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Collections.dll": {}
         }
       },
       "System.Collections.Concurrent/4.3.0": {
@@ -1019,7 +1048,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         },
         "compile": {
-          "ref/netstandard1.5/_._": {}
+          "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
       "System.Runtime.Caching/4.7.0": {
@@ -1454,6 +1483,34 @@
     }
   },
   "libraries": {
+    "Anemonis.AspNetCore.JsonRpc/1.19.0": {
+      "sha512": "nLLqcWsC3vbKF5snw96hSSHoCU7pcjwsbgV/Q6+E9Uwguugvih6TLX1fxgKgKzbG7i8GennoL73IaVuzVcwyVQ==",
+      "type": "package",
+      "path": "anemonis.aspnetcore.jsonrpc/1.19.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageIcon.png",
+        "anemonis.aspnetcore.jsonrpc.1.19.0.nupkg.sha512",
+        "anemonis.aspnetcore.jsonrpc.nuspec",
+        "lib/netcoreapp3.1/Anemonis.AspNetCore.JsonRpc.dll",
+        "lib/netcoreapp3.1/Anemonis.AspNetCore.JsonRpc.xml"
+      ]
+    },
+    "Anemonis.JsonRpc/1.24.2": {
+      "sha512": "lmidd6Ev1LePG1hukt5hlA8HIYA6lNlfcZoUQUNcup6jQBXMTqE7v/1x5J1CEBlOjv8tZ9DauCtdODaUY2NBfA==",
+      "type": "package",
+      "path": "anemonis.jsonrpc/1.24.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "PackageIcon.png",
+        "anemonis.jsonrpc.1.24.2.nupkg.sha512",
+        "anemonis.jsonrpc.nuspec",
+        "lib/netstandard2.1/Anemonis.JsonRpc.dll",
+        "lib/netstandard2.1/Anemonis.JsonRpc.xml"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -2200,10 +2257,10 @@
         "version.txt"
       ]
     },
-    "Newtonsoft.Json/12.0.2": {
-      "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
       "type": "package",
-      "path": "newtonsoft.json/12.0.2",
+      "path": "newtonsoft.json/12.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2226,8 +2283,9 @@
         "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
-        "newtonsoft.json.12.0.2.nupkg.sha512",
-        "newtonsoft.json.nuspec"
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "Newtonsoft.Json.Bson/1.0.2": {
@@ -5492,10 +5550,12 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Anemonis.AspNetCore.JsonRpc >= 1.19.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.2",
       "Microsoft.EntityFrameworkCore >= 5.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.3",
-      "Microsoft.EntityFrameworkCore.Tools >= 5.0.3"
+      "Microsoft.EntityFrameworkCore.Tools >= 5.0.3",
+      "System.Collections >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -5541,6 +5601,10 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
+          "Anemonis.AspNetCore.JsonRpc": {
+            "target": "Package",
+            "version": "[1.19.0, )"
+          },
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
             "target": "Package",
             "version": "[3.1.2, )"
@@ -5558,6 +5622,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.3, )"
+          },
+          "System.Collections": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

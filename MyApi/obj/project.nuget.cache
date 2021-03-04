@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9tAtO4D9gnyKoTnDA9ZcHIAcLRG0z9/4vrARYtLQbJLRhdydElORK78htYOh1ZEugvidxNtuJAFYHyyYL/VIgg==",
+  "dgSpecHash": "L5OvFJEtF0jAAtwhLS6clo2SEuq9BeQU8mzgUiyGLypM32uLtEaiUo30CGy9M27ZtEGKW2rOi82jMN2WJlVzNQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\source\\repos\\MyApi\\MyApi\\MyApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\anemonis.aspnetcore.jsonrpc\\1.19.0\\anemonis.aspnetcore.jsonrpc.1.19.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\anemonis.jsonrpc\\1.24.2\\anemonis.jsonrpc.1.24.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.2\\microsoft.aspnetcore.jsonpatch.3.1.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.2\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.2.nupkg.sha512",
@@ -36,7 +38,7 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
