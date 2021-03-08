@@ -25,13 +25,13 @@ namespace MyApi.Interfacies
     /// добавление новой компании
     /// </summary>
     /// <param name="company"></param>
-    void AddNewCompany(Company company);
+    string AddNewCompany(Company company);
     /// <summary>
     /// добавляет машину в определенную компанию
     /// </summary>
     /// <param name="CompanyId">id компании</param>
     /// <param name="car">модель машины</param>
-    void AddNewCarInCompany(int CompanyId, Car car);
+    string AddNewCarInCompany(int? CompanyId, Car car);
 
     /// <summary>
     /// Обновляет машину.
@@ -40,7 +40,7 @@ namespace MyApi.Interfacies
     /// <param name="CompanyId">ID компании</param>
     /// <param name="car"></param>
     /// <param name="CarId"></param>
-    void UpdateOneCarInOneCompany(int CompanyId, Car car, int CarId);
+    string UpdateOneCarInOneCompany(int? CompanyId, Car car, int? CarId);
     //=======================================
     /// <summary>
     /// добавить водителя в определенную компанию
@@ -49,15 +49,15 @@ namespace MyApi.Interfacies
     /// <param name="CarId">Id машины</param>
     /// <param name="driver">данные водителя</param>
     /// <returns></returns>
-    string AddNewDriverInOneCompany(int CompanyId, int CarId, Driver driver);
-    //void AddNewDriverInOneCompany(int CompanyId, int CarId, Driver driver);
+    string AddNewDriverInOneCompany(int? CompanyId, int? CarId, Driver driver);
+
     //===================================================
-    void UpdateOneDriverInOneCompany(int CompanyId, Driver driver, int DriverId);
+    string UpdateOneDriverInOneCompany(int? CompanyId, Driver driver, int? DriverId);
 
-    void DeleteCompany(int id);
-    void DeleteOneDriverFromCompany(int CompanyId,int CarId, int DriverId);
+    string DeleteCompany(int? id);
+    string DeleteOneDriverFromCompany(int? CompanyId,int? CarId, int? DriverId);
 
-    void DeleteOneCarFromCompany(int CompanyId, int CarId);
+    string DeleteOneCarFromCompany(int? CompanyId, int? CarId);
 
   }
 }

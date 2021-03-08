@@ -36,54 +36,54 @@ namespace MyApi.Controllers
     }
 //    3  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     [HttpDelete("{id}")]
-    public void DeleteCompany(int id)
+    public string DeleteCompany(int? id)
     {
-      MyRepository.DeleteCompany(id);
+     return MyRepository.DeleteCompany(id);
     }
 //  4    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     [HttpPost]
-    public void AddCompany(Company company)
+    public string AddCompany(Company company)
     {
-      MyRepository.AddNewCompany(company);
+     return MyRepository.AddNewCompany(company);
     }
     //   5  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     [HttpPost("{CompanyId}")]
-    public void AddNewCarCompany(int CompanyId, Car car)
+    public string AddNewCarCompany(int? CompanyId, Car car)
     {
-      MyRepository.AddNewCarInCompany(CompanyId, car);
+     return MyRepository.AddNewCarInCompany(CompanyId, car);
+      
     }
     //=    6  ========  !!!!!!!!!!!!!!!!  ????????????????  ====================================
     [HttpPost("{CompanyId}/{CarId}/drivers")]
-    public string AddNewDriverCompany(int CompanyId, int CarId, Driver driver)
-     // public void AddNewDriverCompany(int CompanyId, int CarId, Driver driver)
+    public string AddNewDriverCompany(int? CompanyId, int? CarId, Driver driver)
     {
      return MyRepository.AddNewDriverInOneCompany(CompanyId, CarId, driver);
-      // MyRepository.AddNewDriverInOneCompany(CompanyId, CarId, driver);
+     
     }
     //=================================================
     //   7    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     [HttpDelete("{CompanyId}/{CarId}")]
-    public void DeleteOneCarFromCompany(int CompanyId, int CarId)
+    public string DeleteOneCarFromCompany(int? CompanyId, int? CarId)
     {
-      MyRepository.DeleteOneCarFromCompany(CompanyId, CarId);
+      return MyRepository.DeleteOneCarFromCompany(CompanyId, CarId);
     }
 //   8     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     [HttpPost("{CompanyId}/{CarId}")]
-    public void UpdateOneCarInOneCompany(int CompanyId, Car car, int CarId)
+    public string UpdateOneCarInOneCompany(int? CompanyId, Car car, int? CarId)
     {
-      MyRepository.UpdateOneCarInOneCompany(CompanyId, car, CarId);
+      return MyRepository.UpdateOneCarInOneCompany(CompanyId, car, CarId);
     }
 //======   9     !!!!!!    ==============================================
     [HttpDelete("{CompanyId}/{CarId}/{DriverId}")]
-    public void DeleteOneDriverFromCompany(int CompanyId, int CarId,int DriverId)
+    public string DeleteOneDriverFromCompany(int? CompanyId, int? CarId,int? DriverId)
     {
-      MyRepository.DeleteOneDriverFromCompany(CompanyId, CarId, DriverId);
+      return MyRepository.DeleteOneDriverFromCompany(CompanyId, CarId, DriverId);
     }
 
     [HttpPost("{CompanyId}/{DriverId}/updatedriver")]
-    public void UpdateOneDriverInOneCompany(int CompanyId,int DriverId,Driver driver)
+    public string UpdateOneDriverInOneCompany(int? CompanyId,int? DriverId,Driver driver)
     {
-      MyRepository.UpdateOneDriverInOneCompany(CompanyId, driver, DriverId );
+     return MyRepository.UpdateOneDriverInOneCompany(CompanyId, driver, DriverId );
     }
   }
 }
